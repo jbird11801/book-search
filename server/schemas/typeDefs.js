@@ -4,7 +4,7 @@ const typeDefs = `
 
     username: String!
 
-    Email: String!
+    email: String!
 
     password: String!
 
@@ -29,13 +29,20 @@ const typeDefs = `
 
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    books : [book]
+    
+    user (username : String) : user
+
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+
+    addBook(username : string! , authors : []! , description : String! , _id : string! , image : string , link : String , title : String!) : user
+
+    removeBook(username : string! , _id : string!) : user
+
+    addUser(username : String! , email : String! , password : String!) : user
+
   }
 
 `;
