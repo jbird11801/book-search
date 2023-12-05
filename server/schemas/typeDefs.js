@@ -11,6 +11,14 @@ const typeDefs = `
     savedBooks: [book]
   }
 
+  type auth {
+
+    token : string
+
+    user : user
+    
+  }
+
   type book {
 
     authors : []!
@@ -29,6 +37,7 @@ const typeDefs = `
 
 
   type Query {
+
     books : [book]
     
     user (username : String) : user
@@ -42,6 +51,8 @@ const typeDefs = `
     removeBook(username : string! , _id : string!) : user
 
     addUser(username : String! , email : String! , password : String!) : user
+
+    login(email: String!, password: String!): Auth
 
   }
 
