@@ -37,8 +37,6 @@ const typeDefs = `
 
 
   type Query {
-
-    books : [book]
     
     user (username : String) : user
 
