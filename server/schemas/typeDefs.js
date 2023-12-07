@@ -10,6 +10,8 @@ const typeDefs = `
 
     password: String!
 
+    bookCount:String
+
     savedBooks: [book]
     
   }
@@ -24,9 +26,9 @@ const typeDefs = `
 
   type book {
 
-    authors : [String]!
+    authors : [String]
 
-    description : String
+    description : String!
 
     bookId : ID!
 
@@ -41,16 +43,17 @@ const typeDefs = `
 
   type Query {
     
-    user (username : String) : user
+    user (username : String!) : user
 
   }
 
   input bookInput {
 
     authors : [String]! 
-    description : String
+    description : String!
     bookId : ID! 
-    image : String 
+    image : String!
+    link : String!
     title : String!
 
   }
@@ -59,7 +62,7 @@ const typeDefs = `
 
     addBook( bookinput : bookInput!) : user
 
-    removeBook(_id : ID!) : user
+    removeBook(bookId : ID!) : user
 
     addUser(username : String! , email : String! , password : String!) : auth
 
