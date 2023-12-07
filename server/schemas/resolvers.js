@@ -4,10 +4,10 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     
-    user : async(parent , {userName}) =>
+    user : async(parent , {username}) =>
     {
       
-      const params = userName ? { userName } : {};
+      const params = username ? { username } : {};
 
       return User.find(params);
 
@@ -16,11 +16,11 @@ const resolvers = {
   },
   Mutation: {
 
-    addBook: async (parent , {userName , authors , description , _id , image , link , title}) => {
+    addBook: async (parent , {username ) => {
 
       return User.findOneAndUpdate(
 
-        {username : userName} ,
+        {username : username} ,
 
         {
 
@@ -60,17 +60,24 @@ const resolvers = {
       
     },
 
-    addUser : async (parent , {userName , email , password}) => {
+    addUser : async (parent , {username , email , password}) => {
 
-      return User.create({userName , email , password});
+      console.log("username: " + username + "b4")
+
+      const user = await User.create({username , email , password});
+
+      console.log("username: " + user.username)
+      const token = signToken(user);
+
+      return { token, user };
 
     },
 
-    removeBook: async (parent, { userName , bookID }) => {
+    removeBook: async (parent, { username , bookID }) => {
 
       return User.findOneAndUpdate(
 
-        { userName: userName },
+        { username: username },
 
         { $pull : {savedBooks : { _id : bookID}}}, 
 
