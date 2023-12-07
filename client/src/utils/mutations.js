@@ -34,11 +34,11 @@ export const SAVE_BOOK = gql`
 
    savedBooks{   
     authors
-      description
-      _id
-      image
-      link
-      title}
+    description
+    bookId
+    image
+    link
+    title}
     }
   }
 `;

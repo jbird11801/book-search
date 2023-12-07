@@ -26,9 +26,9 @@ const typeDefs = `
 
     authors : [String]!
 
-    description : String!
+    description : String
 
-    _id : ID!
+    bookId : ID!
 
     image : String
 
@@ -48,10 +48,9 @@ const typeDefs = `
   input bookInput {
 
     authors : [String]! 
-    description : String! 
-    _id : ID! 
+    description : String
+    bookId : ID! 
     image : String 
-    link : String 
     title : String!
 
   }

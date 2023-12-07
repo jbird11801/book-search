@@ -16,7 +16,7 @@ const resolvers = {
   },
   Mutation: {
 
-    addBook: async (parent , {username ) => {
+    addBook: async (parent , {username , authors , description , _id , image , link , title}) => {
 
       return User.findOneAndUpdate(
 
