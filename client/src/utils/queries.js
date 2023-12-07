@@ -28,8 +28,4 @@ export const QUERY_User = gql`
 
   }
 `;
-
-export const QUERY_MATCHUPS = gql`
  
-
-`;
