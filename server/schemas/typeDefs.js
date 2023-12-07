@@ -47,20 +47,11 @@ const typeDefs = `
 
   }
 
-  input bookInput {
 
-    authors : [String]! 
-    description : String!
-    bookId : ID! 
-    image : String!
-    link : String!
-    title : String!
-
-  }
 
   type Mutation {
 
-    addBook( bookinput : bookInput!) : user
+    addBook(user : String! , bookInput : String!) : user
 
     removeBook(bookId : ID!) : user
 

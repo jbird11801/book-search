@@ -16,19 +16,21 @@ const resolvers = {
   },
   Mutation: {
 
-    addBook: async (parent , {username , authors , description , _id , image , link , title}) => {
+    addBook: async (parent , {user , bookInput}) => {
+
+      console.log ("Server: "+ (bookInput))
+
+      const book = JSON.parse(bookInput);
 
       return User.findOneAndUpdate(
 
-        {username : username} ,
+        {username : user} ,
 
         {
 
-          $addToSet : {savedBooks : {authors , description , _id , image , link , title} }
+          $addToSet : await {savedBooks : book}
 
         },
-
-        
 
         {
 
@@ -42,8 +44,9 @@ const resolvers = {
     },
     
     login: async (parent, { email, password }) => {
+    
       const user = await User.findOne({ email });
-
+      
       if (!user) {
         throw AuthenticationError;
       }
@@ -53,7 +56,7 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
-
+      
       const token = signToken(user);
 
       return { token, user };
