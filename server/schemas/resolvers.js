@@ -1,15 +1,16 @@
 const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
+
+
 const resolvers = {
   Query: {
     
-    user : async(parent , {username}) =>
+    me : async(parent , {userId}) =>
+    
     {
-      
-      const params = username ? { username } : {};
 
-      return User.find(params);
+      return User.findOne({_id : userId});
 
     }
 
@@ -18,17 +19,15 @@ const resolvers = {
 
     addBook: async (parent , {user , bookInput}) => {
 
-      console.log ("Server: "+ (bookInput))
-
       const book = JSON.parse(bookInput);
 
-      return User.findOneAndUpdate(
+      return await User.findOneAndUpdate(
 
         {username : user} ,
 
         {
 
-          $addToSet : await {savedBooks : book}
+          $addToSet : {savedBooks : book}
 
         },
 
@@ -78,7 +77,7 @@ const resolvers = {
 
     removeBook: async (parent, { username , bookID }) => {
 
-      return User.findOneAndUpdate(
+      return await User.findOneAndUpdate(
 
         { username: username },
 
@@ -93,5 +92,6 @@ const resolvers = {
   },
 
 };
+
 
 module.exports = resolvers;
