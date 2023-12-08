@@ -43,7 +43,7 @@ const typeDefs = `
 
   type Query {
     
-    user (username : String!) : user
+    me (userId : ID!): user
 
   }
 
@@ -53,7 +53,7 @@ const typeDefs = `
 
     addBook(user : String! , bookInput : String!) : user
 
-    removeBook(bookId : ID!) : user
+    removeBook(username : String , bookId : ID!) : user
 
     addUser(username : String! , email : String! , password : String!) : auth
 
